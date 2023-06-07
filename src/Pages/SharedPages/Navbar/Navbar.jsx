@@ -10,7 +10,7 @@ const Navbar = () => {
     setOpen(!isOpen);
   };
 
-  const user = "null";
+  const user = null;
 
   return (
     <div className="navbar bg-base-100">
@@ -51,11 +51,31 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-end">
+        {
+            user ? <div className="text-lg font-bold mr-3">
+                <Link to="/dashboard">Dashboard</Link>
+            </div> : ""
+        }
+        <div data-tip="Profile name" className="tooltip tooltip-bottom font-bold">
+          <button className="btn btn-ghost btn-circle">
+            <img
+              className="rounded-full"
+              src={
+                user && user.photoURL
+                  ? user.photoURL
+                  : "https://i.ibb.co/9HpR0yB/Nice-Png-user-icon-png-1280406.png"
+              }
+              alt="profile"
+              height="30"
+              width="30"
+            />
+          </button>
+        </div>
         <div className="mr-l md:ml-3 font-bold">
           {user ? (
             <div data-tip="Log Out" className="tooltip tooltip-bottom">
               <button className="btn btn-ghost btn-circle">
-                <MdOutlineLogout className="text-2xl font-bold"></MdOutlineLogout>
+                <MdOutlineLogout className="text-3xl font-bold"></MdOutlineLogout>
               </button>
             </div>
           ) : (
@@ -64,19 +84,6 @@ const Navbar = () => {
             </Link>
           )}
         </div>
-        <button className="btn btn-ghost btn-circle">
-          <img
-            className="rounded-full"
-            src={
-              user && user.photoURL
-                ? user.photoURL
-                : "https://i.ibb.co/9HpR0yB/Nice-Png-user-icon-png-1280406.png"
-            }
-            alt="profile"
-            height="30"
-            width="30"
-          />
-        </button>
       </div>
     </div>
   );
