@@ -15,7 +15,7 @@ const Header = () => {
       <AwesomeSlider>
         <div className="">
           <img
-            className="object-cover relative w-[2500px] h-[1200px]"
+            className="object-cover relative w-full h-full mt-9"
             src={slide1}
             alt="Slide 1"
           />
@@ -40,7 +40,7 @@ const Header = () => {
         </div>
         <div className="">
           <img
-            className="object-cover relative w-[2500px] h-[1200px]"
+            className="object-cover relative w-full h-full mt-9"
             src={slide2}
             alt="Slide 2"
           />
@@ -65,7 +65,7 @@ const Header = () => {
         </div>
         <div className="">
           <img
-            className="object-cover relative w-[2500px] h-[1200px]"
+            className="object-cover relative w-full h-full mt-9"
             src={slide3}
             alt="Slide 3"
           />
@@ -90,7 +90,7 @@ const Header = () => {
         </div>
         <div className="">
           <img
-            className="object-cover relative w-[2500px] h-[1200px]"
+            className="object-cover relative w-full h-full mt-9"
             src={slide4}
             alt="Slide 4"
           />
@@ -115,7 +115,7 @@ const Header = () => {
         </div>
         <div className="">
           <img
-            className="object-cover relative w-[2500px] h-[1200px]"
+            className="object-cover relative w-full h-full mt-9"
             src={slide5}
             alt="Slide 5"
           />
@@ -140,7 +140,7 @@ const Header = () => {
         </div>
         <div className="">
           <img
-            className="object-cover relative w-[2500px] h-[1200px]"
+            className="object-cover relative w-full h-full mt-9"
             src={slide6}
             alt="Slide 6"
           />
@@ -165,7 +165,7 @@ const Header = () => {
         </div>
         <div className="">
           <img
-            className="object-cover relative w-[2500px] h-[1200px]"
+            className="object-cover relative w-full h-full mt-9"
             src={slide7}
             alt="Slide 7"
           />
@@ -188,7 +188,6 @@ const Header = () => {
             </div>
           </div>
         </div>
-        
       </AwesomeSlider>
     </div>
   );
