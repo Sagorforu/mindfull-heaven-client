@@ -1,8 +1,11 @@
+import { Helmet } from "react-helmet-async";
 
 const Instructor = () => {
     return (
         <div>
-            this is a instructor page            
+            <Helmet>
+                <title>MindFull Heaven | Instructor</title>
+            </Helmet>           
         </div>
     );
 };

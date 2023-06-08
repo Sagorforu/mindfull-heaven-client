@@ -1,8 +1,11 @@
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
     return (
         <div>
-            this is a classes page            
+            <Helmet>
+                <title>MindFull Heaven | Classes</title>
+            </Helmet>          
         </div>
     );
 };
