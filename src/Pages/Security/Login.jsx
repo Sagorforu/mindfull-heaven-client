@@ -83,6 +83,7 @@ const Login = () => {
               <div className="my-2">
                 <h4 className="font-semibold">New to Yoga and Meditation? <Link className="underline text-[#0A5403]" to="/signUp">Sign Up</Link></h4>
               </div>
+              <div className="divider mr-20">OR</div>
               <div>
                 <img className="w-1/2" src="https://i.ibb.co/tB24MCG/google.png" alt="" />
               </div>

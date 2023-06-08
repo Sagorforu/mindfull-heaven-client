@@ -10,13 +10,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const SignUp = () => {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const onSubmit = (data) => {
-    console.log(data); // Handle form submission
+    console.log(data); 
   };
 
   const validatePassword = (value) => {
@@ -28,16 +29,15 @@ const SignUp = () => {
       return "Password must contain at least one special character";
     }
   };
-
   return (
     <div>
       <Helmet>
         <title>MindFull Heaven | Sign Up</title>
       </Helmet>
-      <div className="mt-40 grid grid-cols-1 md:grid-cols-2 items-center justify-center">
+      <div className="mt-40 grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-center">
         <div className="mx-auto">
-          <img className="relative h-[900px]" src={loginImage} alt="" />
-          <div className="absolute top-20 left-20 md:top-72 md:left-80">
+          <img className="relative h-[700px] md:h-[870px]" src={loginImage} alt="" />
+          <div className="absolute top-52 left-16 md:top-64 md:left-80">
             <h1 className="text-center mb-3 text-2xl md:text-4xl font-bold">
               Register Now
             </h1>
@@ -48,7 +48,7 @@ const SignUp = () => {
                 </label>{" "}
                 <br />
                 <input
-                className="border-b-2 py-1 px-2 mt-1"
+                  className="border-b-2 py-1 px-2 mt-1"
                   type="text"
                   id="name"
                   placeholder="Your Name"
@@ -60,9 +60,12 @@ const SignUp = () => {
                 )}
               </div>
               <div>
-                <label className="text-xl font-semibold" htmlFor="email">Email</label> <br />
+                <label className="text-xl font-semibold" htmlFor="email">
+                  Email
+                </label>{" "}
+                <br />
                 <input
-                className="border-b-2 py-1 px-2 mt-1"
+                  className="border-b-2 py-1 px-2 mt-1"
                   type="email"
                   id="email"
                   placeholder="Email Here"
@@ -80,10 +83,14 @@ const SignUp = () => {
                 )}
               </div>
               <div>
-                <label className="text-xl font-semibold" htmlFor="password">Password</label> <br />
+                <label className="text-xl font-semibold" htmlFor="password">
+                  Password
+                </label>{" "}
+                <br />
                 <input
-                className="border-b-2 py-1 px-2 mt-1"
-                placeholder="Password Here"
+                name="password"
+                  className="border-b-2 py-1 px-2 mt-1"
+                  placeholder="Password Here"
                   type={passwordVisible ? "text" : "password"}
                   id="password"
                   {...register("password", {
@@ -109,10 +116,17 @@ const SignUp = () => {
                 )}
               </div>
               <div>
-                <label className="text-xl font-semibold" htmlFor="confirmPassword">Confirm Password</label> <br />
+                <label
+                  className="text-xl font-semibold"
+                  htmlFor="confirmPassword"
+                >
+                  Confirm Password
+                </label>{" "}
+                <br />
                 <input
-                className="border-b-2 py-1 px-2 mt-1"
+                  className="border-b-2 py-1 px-2 mt-1"
                   type="password"
+                  name="confirmPassword"
                   id="confirmPassword"
                   placeholder="Confirm Password"
                   {...register("confirmPassword", {
@@ -129,11 +143,19 @@ const SignUp = () => {
                 )}
               </div>
               <div>
-                <label className="text-xl font-semibold" htmlFor="photo">Upload Photo</label> <br />
+                <label className="text-xl font-semibold" htmlFor="photo">
+                  Upload Photo
+                </label>{" "}
+                <br />
                 <input type="file" id="photo" {...register("photo")} />
               </div>
               <div className="mt-2">
-                <button className="px-5 py-1 text-white font-bold bg-[#74c023]" type="submit">Register</button>
+                <button
+                  className="px-5 py-1 text-white font-bold bg-[#74c023]"
+                  type="submit"
+                >
+                  Register
+                </button>
               </div>
               <div className="my-2">
                 <h4 className="font-semibold">
@@ -143,6 +165,7 @@ const SignUp = () => {
                   </Link>
                 </h4>
               </div>
+              <div className="divider mr-20">OR</div>
               <div>
                 <img
                   className="w-1/2"
