@@ -13,7 +13,7 @@ const Navbar = () => {
   const user = null;
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 py-10 fixed top-0 left-0 z-10 my-container">
       <div className="navbar-start">
         <div className="">
           <div className="">
