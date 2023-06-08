@@ -7,6 +7,7 @@ import Classes from "../Pages/NavLinkPages/Classes";
 import Login from "../Pages/Security/Login";
 import Dashboard from "../Dashboard/Dashboard/Dashboard";
 import SignUp from "../Pages/Security/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
         },
         {
             path: '/instructor',
-            element: <Instructor></Instructor>
+            element: <PrivateRoute><Instructor></Instructor></PrivateRoute>
         },
         {
             path: '/classes',

@@ -8,11 +8,12 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../Components/Hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ImSpinner } from "react-icons/im";
 
 const SignUp = () => {
-  const { createUser, createGoogleUser, loading, setLoading } = useAuth();
+  const { createUser, createGoogleUser, loading, setLoading, updateUserInfo } =
+    useAuth();
   const {
     register,
     watch,
@@ -24,9 +25,14 @@ const SignUp = () => {
   const onSubmit = (data) => {
     createUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
-        toast("User sign up successfully");
-        setLoading(false);
+        if (result.user) {
+          console.log(result.user);
+          toast("User sign up successfully");
+          setLoading(false);
+          updateUserInfo(data.name, data.photo).then(() => {
+            console.log("profile update");
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
