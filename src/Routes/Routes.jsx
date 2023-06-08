@@ -6,6 +6,7 @@ import Instructor from "../Pages/NavLinkPages/Instructor";
 import Classes from "../Pages/NavLinkPages/Classes";
 import Login from "../Pages/Security/Login";
 import Dashboard from "../Dashboard/Dashboard/Dashboard";
+import SignUp from "../Pages/Security/SignUp";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         {
             path: '/login',
             element: <Login></Login>
+        },
+        {
+            path: '/signUp',
+            element: <SignUp></SignUp>
         }
       ]
     },
