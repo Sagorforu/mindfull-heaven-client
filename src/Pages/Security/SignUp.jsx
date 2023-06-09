@@ -10,6 +10,7 @@ import useAuth from "../../Components/Hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ImSpinner } from "react-icons/im";
+import { saveUser } from "../../API/auth";
 
 const SignUp = () => {
   const { createUser, createGoogleUser, loading, setLoading, updateUserInfo } =
@@ -45,11 +46,11 @@ const SignUp = () => {
         .then((result) => {
             if (result.user) {
               console.log(result.user);
-              toast("User sign up successfully");
               updateUserInfo(data.name, imageUrl).then(() => {
-                console.log("profile update");
+                saveUser(result.user);
                 reset();
                 setLoading(false);
+                toast("User sign up successfully");
                 navigate(from, {replace: true});
               });
             }
@@ -66,6 +67,7 @@ const SignUp = () => {
     createGoogleUser()
       .then((result) => {
         console.log(result.user);
+        saveUser(result.user);
         toast("User sign up successfully");
         setLoading(false);
         navigate("/");

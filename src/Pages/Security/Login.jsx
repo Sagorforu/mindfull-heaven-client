@@ -9,6 +9,7 @@ import { useState } from "react";
 import useAuth from "../../Components/Hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import { ImSpinner } from "react-icons/im";
+import { saveUser } from "../../API/auth";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -42,7 +43,8 @@ const Login = () => {
     createGoogleUser()
       .then((result) => {
         console.log(result.user);
-        toast("User sign up successfully");
+        saveUser(result.user);
+        toast("User Log in successfully");
         setLoading(false);
         reset()
         navigate(from, {replace: true});
