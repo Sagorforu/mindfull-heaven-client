@@ -17,6 +17,7 @@ const SignUp = () => {
   const {
     register,
     watch,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -47,6 +48,7 @@ const SignUp = () => {
               toast("User sign up successfully");
               updateUserInfo(data.name, imageUrl).then(() => {
                 console.log("profile update");
+                reset();
                 setLoading(false);
                 navigate(from, {replace: true});
               });

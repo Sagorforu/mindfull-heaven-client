@@ -20,6 +20,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -43,6 +44,7 @@ const Login = () => {
         console.log(result.user);
         toast("User sign up successfully");
         setLoading(false);
+        reset()
         navigate(from, {replace: true});
       })
       .catch((error) => {
