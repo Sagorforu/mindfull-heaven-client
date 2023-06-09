@@ -1,5 +1,5 @@
 const useAdmin = () => {
-    const isAdmin = false;
+    const isAdmin = true;
     return [isAdmin];
 }
 export default useAdmin;

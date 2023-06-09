@@ -1,5 +1,5 @@
 const useInstructor = () => {
-    const isInstructor = true;
+    const isInstructor = false;
     return [isInstructor];
 }
 export default useInstructor;

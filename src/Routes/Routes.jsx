@@ -8,6 +8,14 @@ import Login from "../Pages/Security/Login";
 import Dashboard from "../Dashboard/Dashboard/Dashboard";
 import SignUp from "../Pages/Security/SignUp";
 import PrivateRoute from "./PrivateRoute";
+import ManageClasses from "../Dashboard/AdminDashboard/ManageClasses";
+import AddClass from "../Dashboard/InstructorDashboard/AddClass";
+import MyClass from "../Dashboard/InstructorDashboard/MyClass";
+import SelectedClass from "../Dashboard/StudentDashboard/SelectedClass";
+import EnrolledClass from "../Dashboard/StudentDashboard/EnrolledClass";
+import Profile from "../Pages/Profile/Profile";
+import About from "../Pages/About/About";
+import UsersManage from "../Dashboard/AdminDashboard/UsersManage";
 
 const router = createBrowserRouter([
     {
@@ -34,12 +42,46 @@ const router = createBrowserRouter([
         {
             path: '/signUp',
             element: <SignUp></SignUp>
+        },
+        {
+            path: '/profile',
+            element: <Profile></Profile>
+        },
+        {
+            path: '/about',
+            element: <About></About>
         }
       ]
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "/dashboard/manageClasses",
+                element: <ManageClasses></ManageClasses>
+            },
+            {
+                path: "/dashboard/usersManage",
+                element: <UsersManage></UsersManage>
+            },
+            {
+                path: "/dashboard/addClass",
+                element: <AddClass></AddClass>
+            },
+            {
+                path: "/dashboard/myClass",
+                element: <MyClass></MyClass>
+            },
+            {
+                path: "/dashboard/selectedClass",
+                element: <SelectedClass></SelectedClass>
+            },
+            {
+                path: "/dashboard/enrolledClass",
+                element: <EnrolledClass></EnrolledClass>
+            }
+        ]
     }
   ]);
 
