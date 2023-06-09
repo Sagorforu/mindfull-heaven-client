@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import signUp from "../../assets/signUp.json";
 import loginImage from "../../assets/loginBackground/little.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../Components/Hooks/useAuth";
@@ -21,24 +21,45 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-      .then((result) => {
-        if (result.user) {
-          console.log(result.user);
-          toast("User sign up successfully");
-          setLoading(false);
-          updateUserInfo(data.name, data.photo).then(() => {
-            console.log("profile update");
+    const photo = data.photo[0];
+    const formImgData = new FormData();
+    formImgData.append("image", photo);
+    const createUrl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_imgbb_key
+    }`;
+    console.log(createUrl);
+    fetch(createUrl, {
+      method: "POST",
+      body: formImgData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        const imageUrl = imgData.data.display_url;
+        createUser(data.email, data.password)
+        .then((result) => {
+            setLoading(true)
+            if (result.user) {
+              console.log(result.user);
+              toast("User sign up successfully");
+              updateUserInfo(data.name, imageUrl).then(() => {
+                console.log("profile update");
+                setLoading(false);
+                navigate(from, {replace: true});
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast(error.message);
+            setLoading(false);
           });
-        }
       })
-      .catch((error) => {
-        console.log(error);
-        toast(error.message);
-        setLoading(false);
-      });
+      .catch((error) => console.log(error));
   };
   const handleGoogleUser = () => {
     createGoogleUser()
@@ -46,6 +67,7 @@ const SignUp = () => {
         console.log(result.user);
         toast("User sign up successfully");
         setLoading(false);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);

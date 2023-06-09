@@ -66,14 +66,14 @@ const Navbar = () => {
           ""
         )}
         <div
-          data-tip="Profile name"
+          data-tip={user ? user.displayName : null}
           className="tooltip tooltip-bottom font-bold"
         >
           <button className="btn btn-ghost btn-circle">
             <img
               className="rounded-full"
               src={
-                user && user.photoURL
+                user
                   ? user.photoURL
                   : "https://i.ibb.co/9HpR0yB/Nice-Png-user-icon-png-1280406.png"
               }
