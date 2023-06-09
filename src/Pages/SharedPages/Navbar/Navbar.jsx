@@ -13,11 +13,11 @@ const Navbar = () => {
     setOpen(!isOpen);
   };
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     logOut()
-    .then(()=>{})
-    .catch(error => console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="navbar bg-base-100 md:py-9 py-3 fixed top-0 left-0 z-10 my-container">
@@ -58,12 +58,17 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        {
-            user ? <div className="text-lg font-bold mr-3">
-                <Link to="/dashboard">Dashboard</Link>
-            </div> : ""
-        }
-        <div data-tip="Profile name" className="tooltip tooltip-bottom font-bold">
+        {user ? (
+          <div className="text-lg font-bold mr-3">
+            <Link to="/dashboard">Dashboard</Link>
+          </div>
+        ) : (
+          ""
+        )}
+        <div
+          data-tip="Profile name"
+          className="tooltip tooltip-bottom font-bold"
+        >
           <button className="btn btn-ghost btn-circle">
             <img
               className="rounded-full"
@@ -81,7 +86,10 @@ const Navbar = () => {
         <div className="mr-l md:ml-3 font-bold">
           {user ? (
             <div data-tip="Log Out" className="tooltip tooltip-bottom">
-              <button onClick={handleLogOut} className="btn btn-ghost btn-circle">
+              <button
+                onClick={handleLogOut}
+                className="btn btn-ghost btn-circle"
+              >
                 <MdOutlineLogout className="text-3xl font-bold"></MdOutlineLogout>
               </button>
             </div>

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import loginPage from "../../assets/loginPage.json";
 import loginImage from "../../assets/loginBackground/little.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import useAuth from "../../Components/Hooks/useAuth";
@@ -13,6 +13,9 @@ import { ImSpinner } from "react-icons/im";
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const { userSignIn, loading, setLoading, createGoogleUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const {
     register,
@@ -26,6 +29,7 @@ const Login = () => {
         console.log(result.user);
         toast("Login successful");
         setLoading(false);
+        navigate(from, {replace: true});
       })
       .catch((error) => {
         console.log(error.message);
@@ -39,6 +43,7 @@ const Login = () => {
         console.log(result.user);
         toast("User sign up successfully");
         setLoading(false);
+        navigate(from, {replace: true});
       })
       .catch((error) => {
         console.log(error.message);
