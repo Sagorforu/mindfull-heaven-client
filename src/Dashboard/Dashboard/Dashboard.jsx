@@ -69,7 +69,7 @@ const Dashboard = () => {
                 </Link>
                 <Link to="/dashboard/usersManage">
                   <li className="hover:bg-white hover:text-slate-800 text-white border-b-2 hover:font-bold px-4 py-1 rounded mt-3 flex items-center gap-5">
-                    <MdLibraryBooks></MdLibraryBooks> Manage Users
+                    <FaUsers></FaUsers> Manage Users
                   </li>
                 </Link>
               </>
