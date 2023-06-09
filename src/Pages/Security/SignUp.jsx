@@ -42,7 +42,6 @@ const SignUp = () => {
         const imageUrl = imgData.data.display_url;
         createUser(data.email, data.password)
         .then((result) => {
-            setLoading(true)
             if (result.user) {
               console.log(result.user);
               toast("User sign up successfully");
