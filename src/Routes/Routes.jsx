@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         },
         {
             path: '/classes',
-            element: <Classes></Classes>
+            element: <PrivateRoute><Classes></Classes></PrivateRoute>
         },
         {
             path: '/login',

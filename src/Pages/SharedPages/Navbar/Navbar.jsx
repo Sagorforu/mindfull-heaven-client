@@ -3,14 +3,21 @@ import { MdOutlineLogout } from "react-icons/md";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import useAuth from "../../../Components/Hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const { user, logOut } = useAuth();
+
   const toggleOpen = () => {
     setOpen(!isOpen);
   };
 
-  const user = null;
+  const handleLogOut = () =>{
+    logOut()
+    .then(()=>{})
+    .catch(error => console.log(error))
+  }
 
   return (
     <div className="navbar bg-base-100 md:py-9 py-3 fixed top-0 left-0 z-10 my-container">
@@ -74,7 +81,7 @@ const Navbar = () => {
         <div className="mr-l md:ml-3 font-bold">
           {user ? (
             <div data-tip="Log Out" className="tooltip tooltip-bottom">
-              <button className="btn btn-ghost btn-circle">
+              <button onClick={handleLogOut} className="btn btn-ghost btn-circle">
                 <MdOutlineLogout className="text-3xl font-bold"></MdOutlineLogout>
               </button>
             </div>
