@@ -7,6 +7,7 @@ import { FaBookOpen, FaCheckSquare, FaHome, FaSignInAlt, FaUser, FaUsers } from 
 import { ImBook, ImProfile } from "react-icons/im";
 import { toast } from "react-toastify";
 import { MdLibraryBooks } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const { user, logOut } = useAuth();
@@ -27,8 +28,9 @@ const Dashboard = () => {
 
   return (
     <div className="drawer lg:drawer-open">
+      <Helmet><title>MindFull Heaven | Dashboard</title></Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col pt-10 items-center justify-center">
+      <div className="drawer-content flex flex-col pt-10 items-center ">
         <Outlet></Outlet>
         <div></div>
         <label
@@ -43,7 +45,7 @@ const Dashboard = () => {
         <div className="p-4 w-80 h-full bg-[#0A5403] space-y-5">
           <div className="text-center pt-4">
             <div className="avatar mx-auto">
-              <div className="  rounded-full">
+              <div className="w-24 rounded-full">
                 <img src={user?.photoURL} alt="" />
               </div>
             </div>
