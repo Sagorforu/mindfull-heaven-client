@@ -13,24 +13,42 @@ const UsersManage = () => {
   const handleDelete = () => {};
   const handleMakeAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH"
+      method: "PATCH",
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if (data.modifiedCount) {
-        refetch()
-        Swal.fire({
-          position: 'top-center',
-          icon: 'success',
-          title: `${user.email} is an Admin now!!!`,
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: `${user.email} is an Admin now!!!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
-  const handleMakeInstructor = () => {};
+  const handleMakeInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: `${user.email} is an Instructor now!!!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   return (
     <div className="mb-16">
@@ -60,11 +78,11 @@ const UsersManage = () => {
                   <td>
                     {user.role === "admin" ? (
                       <button
-                      disabled
-                      className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
-                    >
-                      Admin
-                    </button>
+                        disabled
+                        className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                      >
+                        Admin
+                      </button>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
@@ -76,7 +94,12 @@ const UsersManage = () => {
                   </td>
                   <td>
                     {user.role === "instructor" ? (
-                      "Instructor"
+                      <button
+                        disabled
+                        className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                      >
+                        Instructor
+                      </button>
                     ) : (
                       <button
                         onClick={() => handleMakeInstructor(user)}
