@@ -3,14 +3,36 @@ import PageTitle from "../../Components/PageTitle/PageTitle";
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAuth from "../../Components/Hooks/useAuth";
+import { ImSpinner } from "react-icons/im";
 
 const UsersManage = () => {
+  const { loading, setLoading } = useAuth();
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
 
-  const handleDelete = () => {};
+  const handleDelete = (user) => {
+    fetch(`http://localhost:5000/users/${user._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount) {
+          refetch();
+          setLoading(false);
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: `${user.email} user delete successfully!!!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   const handleMakeAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, {
       method: "PATCH",
@@ -20,6 +42,7 @@ const UsersManage = () => {
         console.log(data);
         if (data.modifiedCount) {
           refetch();
+          setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -39,6 +62,7 @@ const UsersManage = () => {
         console.log(data);
         if (data.modifiedCount) {
           refetch();
+          setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -79,16 +103,23 @@ const UsersManage = () => {
                     {user.role === "admin" ? (
                       <button
                         disabled
-                        className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                        className="text-base  font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
                       >
                         Admin
                       </button>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
-                        className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                        className="text-base  font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
                       >
-                        Make Admin
+                       {loading ? (
+                        <ImSpinner
+                          size={24}
+                          className="animate-spin"
+                        ></ImSpinner>
+                      ) : (
+                        "Make Admin"
+                      )}
                       </button>
                     )}
                   </td>
@@ -96,16 +127,23 @@ const UsersManage = () => {
                     {user.role === "instructor" ? (
                       <button
                         disabled
-                        className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                        className="text-base  font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
                       >
                         Instructor
                       </button>
                     ) : (
                       <button
                         onClick={() => handleMakeInstructor(user)}
-                        className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                        className="text-base font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
                       >
-                        Make Instructor
+                        {loading ? (
+                        <ImSpinner
+                          size={24}
+                          className="animate-spin"
+                        ></ImSpinner>
+                      ) : (
+                        "Make Instructor"
+                      )}
                       </button>
                     )}
                   </td>
@@ -114,7 +152,14 @@ const UsersManage = () => {
                       onClick={() => handleDelete(user)}
                       className="text-xl hover:bg-[#a31111] bg-[#d61e1e] p-3 rounded text-white"
                     >
-                      <FaTrashAlt></FaTrashAlt>
+                      {loading ? (
+                        <ImSpinner
+                          size={24}
+                          className="animate-spin"
+                        ></ImSpinner>
+                      ) : (
+                        <FaTrashAlt></FaTrashAlt>
+                      )}
                     </button>
                   </td>
                 </tr>
