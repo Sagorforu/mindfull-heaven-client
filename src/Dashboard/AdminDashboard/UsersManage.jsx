@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const UsersManage = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
@@ -10,7 +11,25 @@ const UsersManage = () => {
   });
 
   const handleDelete = () => {};
-  const handleMakeAdmin = () => {};
+  const handleMakeAdmin = (user) => {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      if (data.modifiedCount) {
+        refetch()
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: `${user.email} is an Admin now!!!`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+  };
   const handleMakeInstructor = () => {};
 
   return (
@@ -40,7 +59,12 @@ const UsersManage = () => {
                   <td className="font-bold">{user.email}</td>
                   <td>
                     {user.role === "admin" ? (
-                      "Admin"
+                      <button
+                      disabled
+                      className="text-base hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                    >
+                      Admin
+                    </button>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
