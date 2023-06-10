@@ -56,6 +56,7 @@ const Dashboard = () => {
               {user?.email}
             </h1>
             <h1 className="text-white text-base font-semibold mt-1">
+              {/* TODO: add role dynamically */}
               Role: {"Admin"}
             </h1>
           </div>

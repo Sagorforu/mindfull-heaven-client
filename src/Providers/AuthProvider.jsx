@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -34,22 +35,33 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
-  }
+  };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (loggedUser) => {
       setUser(loggedUser);
+      // get and set token using axios
+      if (loggedUser) {
+        axios
+          .post("http://localhost:5000/jwt", { email: loggedUser.email })
+          .then((data) => {
+            console.log(data.data.token);
+            localStorage.setItem("access-token", data.data.token);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
     return () => {
       return unSubscribe();
     };
   }, []);
-  const updateUserInfo = (name, photo) =>{
+  const updateUserInfo = (name, photo) => {
     return updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: photo
-    })
-  }
+      displayName: name,
+      photoURL: photo,
+    });
+  };
 
   const authInfo = {
     user,
@@ -59,7 +71,7 @@ const AuthProvider = ({ children }) => {
     createGoogleUser,
     userSignIn,
     updateUserInfo,
-    logOut
+    logOut,
   };
 
   return (
