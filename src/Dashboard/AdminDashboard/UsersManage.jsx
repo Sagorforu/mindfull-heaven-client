@@ -19,14 +19,13 @@ const UsersManage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.deletedCount) {
           refetch();
           setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
-            title: `${user.email} user delete successfully!!!`,
+            title: `${user.name} user delete successfully!!!`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -39,14 +38,13 @@ const UsersManage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
           refetch();
           setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
-            title: `${user.email} is an Admin now!!!`,
+            title: `${user.name} is an Admin now!!!`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -59,14 +57,13 @@ const UsersManage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
           refetch();
           setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
-            title: `${user.email} is an Instructor now!!!`,
+            title: `${user.name} is an Instructor now!!!`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -112,14 +109,14 @@ const UsersManage = () => {
                         onClick={() => handleMakeAdmin(user)}
                         className="text-base  font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
                       >
-                       {loading ? (
-                        <ImSpinner
-                          size={24}
-                          className="animate-spin"
-                        ></ImSpinner>
-                      ) : (
-                        "Make Admin"
-                      )}
+                        {loading ? (
+                          <ImSpinner
+                            size={24}
+                            className="animate-spin"
+                          ></ImSpinner>
+                        ) : (
+                          "Make Admin"
+                        )}
                       </button>
                     )}
                   </td>
@@ -137,13 +134,13 @@ const UsersManage = () => {
                         className="text-base font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
                       >
                         {loading ? (
-                        <ImSpinner
-                          size={24}
-                          className="animate-spin"
-                        ></ImSpinner>
-                      ) : (
-                        "Make Instructor"
-                      )}
+                          <ImSpinner
+                            size={24}
+                            className="animate-spin"
+                          ></ImSpinner>
+                        ) : (
+                          "Make Instructor"
+                        )}
                       </button>
                     )}
                   </td>

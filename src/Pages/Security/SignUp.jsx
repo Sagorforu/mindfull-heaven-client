@@ -25,7 +25,7 @@ const SignUp = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     const photo = data.photo[0];
@@ -43,15 +43,14 @@ const SignUp = () => {
       .then((imgData) => {
         const imageUrl = imgData.data.display_url;
         createUser(data.email, data.password)
-        .then((result) => {
+          .then((result) => {
             if (result.user) {
-              console.log(result.user);
               updateUserInfo(data.name, imageUrl).then(() => {
                 saveUser(result.user);
                 reset();
                 setLoading(false);
                 toast("User sign up successfully");
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
               });
             }
           })
@@ -66,7 +65,6 @@ const SignUp = () => {
   const handleGoogleUser = () => {
     createGoogleUser()
       .then((result) => {
-        console.log(result.user);
         saveUser(result.user);
         toast("User sign up successfully");
         setLoading(false);

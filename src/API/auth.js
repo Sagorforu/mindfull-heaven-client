@@ -2,6 +2,8 @@
 export const saveUser = (user) => {
   const currentUser = {
     email: user.email,
+    name: user.displayName,
+    photo: user.photoURL,
   };
   fetch(`http://localhost:5000/users/${user?.email}`, {
     method: "PUT",
