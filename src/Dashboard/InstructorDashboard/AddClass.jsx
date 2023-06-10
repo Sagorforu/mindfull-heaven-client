@@ -1,10 +1,72 @@
 import { Helmet } from "react-helmet-async";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 import useAuth from "../../Components/Hooks/useAuth";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
-    const { user } = useAuth();
-    console.log(user);
+  const { user } = useAuth();
+  const [photoURL, setPhotoURL] = useState("");
+  //   console.log("photo url form useState", photoURL)
+
+  const handleAddClass = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const className = form.className.value;
+    const instructorName = form.instructorName.value;
+    const instructorEmail = form.instructorEmail.value;
+    const availableSeats = form.availableSeats.value;
+    const price = form.price.value;
+    const photo = form.classImage.files[0];
+    const formImgData = new FormData();
+    formImgData.append("image", photo);
+    const createUrl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_imgbb_key
+    }`;
+    console.log("create photo url for add class image", createUrl);
+    fetch(createUrl, {
+      method: "POST",
+      body: formImgData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        const imageUrl = imgData.data.display_url;
+        setPhotoURL(imageUrl);
+      })
+      .catch((error) => console.log(error));
+    console.log(photoURL);
+    const classData = {
+      className: className,
+      instructorName: instructorName,
+      instructorEmail: instructorEmail,
+      availableSeats: parseFloat(availableSeats),
+      price: parseFloat(price),
+      classPhoto: photoURL,
+      status: "pending",
+    };
+    fetch("http://localhost:5000/addClass", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(classData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Your Class added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+      form.reset()
+  };
+
   return (
     <div className="mb-20">
       <Helmet>
@@ -12,7 +74,7 @@ const AddClass = () => {
       </Helmet>
       <PageTitle heading={"Add a Class"}></PageTitle>
       <div className="bg-[#f4ffe9] p-20 px-40">
-        <form>
+        <form onSubmit={handleAddClass}>
           <div className="mb-4">
             <label
               className="block text-gray-700 font-bold mb-2"
@@ -25,6 +87,7 @@ const AddClass = () => {
               type="text"
               id="className"
               name="className"
+              placeholder="Class Name Here"
               required
             />
           </div>
@@ -87,6 +150,7 @@ const AddClass = () => {
               type="number"
               id="availableSeats"
               name="availableSeats"
+              placeholder="Available Seats Number"
               required
             />
           </div>
@@ -99,9 +163,10 @@ const AddClass = () => {
             </label>
             <input
               className="border border-gray-300 rounded-md p-2 w-full"
-              type="number"
+              type="text"
               id="price"
               name="price"
+              placeholder="Price"
               required
             />
           </div>
