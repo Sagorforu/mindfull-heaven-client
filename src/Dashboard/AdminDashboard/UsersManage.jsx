@@ -5,12 +5,14 @@ import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../Components/Hooks/useAuth";
 import { ImSpinner } from "react-icons/im";
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 
 const UsersManage = () => {
-  const { loading, setLoading } = useAuth();
+  const { loading } = useAuth();
+  const [axiosSecure] = useAxiosSecure();
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+    const res = await axiosSecure.get("/users");
+    return res.data;
   });
 
   const handleDelete = (user) => {
@@ -21,7 +23,6 @@ const UsersManage = () => {
       .then((data) => {
         if (data.deletedCount) {
           refetch();
-          setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -40,7 +41,6 @@ const UsersManage = () => {
       .then((data) => {
         if (data.modifiedCount) {
           refetch();
-          setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -59,7 +59,6 @@ const UsersManage = () => {
       .then((data) => {
         if (data.modifiedCount) {
           refetch();
-          setLoading(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
