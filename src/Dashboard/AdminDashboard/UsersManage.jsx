@@ -99,7 +99,7 @@ const UsersManage = () => {
                     {user.role === "admin" ? (
                       <button
                         disabled
-                        className="text-base  font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white"
+                        className="text-base  font-bold hover:bg-[#60aa10] bg-[#8ad33d] p-3 rounded text-white cursor-not-allowed"
                       >
                         Admin
                       </button>
