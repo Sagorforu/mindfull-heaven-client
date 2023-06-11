@@ -7,7 +7,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
 
     if (loading) {
-        return <div className="flex items-center justify-center">
+        return <div className="flex items-center justify-center mt-20">
             <ImSpinner3 size={40} className="animate-spin"></ImSpinner3>
         </div>
     }
