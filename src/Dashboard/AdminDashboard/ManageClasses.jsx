@@ -11,8 +11,8 @@ const ManageClasses = () => {
     return res.data;
   });
 
-  const handleApprove = (id) => {
-    fetch(`http://localhost:5000/manageClass/approve/${id}`, {
+  const handleApprove = (singleClass) => {
+    fetch(`http://localhost:5000/manageClass/approve/${singleClass._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -22,7 +22,25 @@ const ManageClasses = () => {
           Swal.fire({
             position: "top-center",
             icon: "success",
-            title: `${classes.className} is approve now!!!`,
+            title: `${singleClass.className} is approve now!!!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+  const handleDeny = (singleClass) => {
+    fetch(`http://localhost:5000/manageClass/denied/${singleClass._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: `${singleClass.className} is denied !!!`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -75,15 +93,27 @@ const ManageClasses = () => {
                   </button>
                 ) : (
                   <button
-                    onClick={() => handleApprove(singleClass._id)}
+                    onClick={() => handleApprove(singleClass)}
                     className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded"
                   >
                     Approve
                   </button>
                 )}
-                <button className="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                  Deny
-                </button>
+                {singleClass.status === "denied" ? (
+                  <button
+                    disabled
+                    className="bg-slate-500 text-white font-bold py-2 px-4 rounded cursor-not-allowed"
+                  >
+                    Deny
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleDeny(singleClass)}
+                    className="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Deny
+                  </button>
+                )}
                 <button className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded">
                   FeedBack
                 </button>
