@@ -24,40 +24,38 @@ const Classes = () => {
       return;
     }
     const selectedClassData = {
-        className: singleClass.className,
-        classPhoto: singleClass.classPhoto,
-        instructorEmail: singleClass.instructorEmail,
-        instructorName: singleClass.instructorName,
-        price: singleClass.price,
-        availableSeats: singleClass.availableSeats,
-        email: user.email
-    }
+      className: singleClass.className,
+      classPhoto: singleClass.classPhoto,
+      instructorEmail: singleClass.instructorEmail,
+      instructorName: singleClass.instructorName,
+      price: singleClass.price,
+      availableSeats: singleClass.availableSeats,
+      email: user.email,
+    };
     Swal.fire({
-        title: "Are you sure to select this class?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#0A5403",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, Add it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          
-    fetch("http://localhost:5000/selectedClass", {
-            method: "POST",
-            headers: {
-                "content-type" : "application/json"
-            },
-            body: JSON.stringify(selectedClassData)
-          })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-              if (data.inserted > 0) {
-                Swal.fire("Class has been added successfully.", "success");
-              }
-            });
-        }
-      });
+      title: "Are you sure to select this class?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#0A5403",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Add it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch("http://localhost:5000/selectedClass", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(selectedClassData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.inserted > 0) {
+              Swal.fire("Class has been added successfully.", "success");
+            }
+          });
+      }
+    });
   };
 
   const handleModalClose = () => {
@@ -92,18 +90,22 @@ const Classes = () => {
                     <p>Available Seats: {singleClass.availableSeats}</p>
                     <p>Price: ${singleClass.price}</p>
                     <div className="card-actions mt-5 flex justify-between">
-                      { singleClass.availableSeats === 0 ? <button
-                        onClick={() => handleModalOpen(singleClass._id)}
-                        disabled
-                        className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded cursor-not-allowed"
-                      >
-                        Select
-                      </button> : <button
-                        onClick={() => handleModalOpen(singleClass._id)}
-                        className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded"
-                      >
-                        Select
-                      </button> }
+                      {singleClass.availableSeats === 0 ? (
+                        <button
+                          onClick={() => handleModalOpen(singleClass._id)}
+                          disabled
+                          className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded cursor-not-allowed"
+                        >
+                          Select
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleModalOpen(singleClass._id)}
+                          className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded"
+                        >
+                          Select
+                        </button>
+                      )}
                       {user ? (
                         <></>
                       ) : (
@@ -190,7 +192,7 @@ const Classes = () => {
                                 Login first.
                               </h2>
                               <div className="text-right">
-                               <Link to="/login">
+                                <Link to="/login">
                                   <button className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded mt-3">
                                     Login
                                   </button>
