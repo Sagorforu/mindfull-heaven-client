@@ -33,9 +33,9 @@ const Instructor = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">
-                Instructor Name: {teacher.name}
+                <span className="uppercase">Name:</span> {teacher.name}
               </h2>
-              <p>Instructor Email: {teacher.email}</p>
+              <p><span className="uppercase font-semibold me-2">Email:</span> {teacher.email}</p>
               <div className="card-actions mt-5 flex justify-between">
                 <button className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded">
                   See Classes
