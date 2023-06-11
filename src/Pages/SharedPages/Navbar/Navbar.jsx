@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 md:py-9 py-3 fixed top-0 left-0 z-10 my-container">
+    <div className="navbar bg-base-100 md:py-6 py-3 fixed top-0 left-0 z-10 my-container mx-20 shadow-xl">
       <div className="navbar-start">
         <div className="">
           <div className="">
@@ -31,8 +31,10 @@ const Navbar = () => {
               <FaBars></FaBars>
             </label>
           </div>
+        </div>
+        <div className="relative">
           {isOpen && (
-            <ul className="menu menu-sm mt-3 p-2  shadow bg-base-100 rounded-box w-52">
+            <ul className="menu menu-sm mt-3 p-2 absolute -left-12 top-6 shadow bg-base-100 rounded-box w-52">
               <li className="font-bold">
                 <Link className="text-base" to="/">
                   Home

@@ -11,15 +11,15 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
+    <div className="mt-8 my-container">
       <AwesomeSlider>
         <div className="">
           <img
-            className="object-cover relative w-full h-full mt-9"
+            className="object-cover  w-full h-full mt-9"
             src={slide1}
             alt="Slide 1"
           />
-          <div className="absolute flex items-center h-full left-0 top-8 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
+          <div className="absolute flex items-center h-full py-5 left-0 top-4 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
             <div className=" text-white space-y-1 md:space-y-7 pl-2 md:pl-32 w-3/4">
               <h2 className="text-xl md:text-6xl font-bold">
                 Affordable Price For Yoga and Meditation Classes
@@ -44,7 +44,7 @@ const Header = () => {
             src={slide2}
             alt="Slide 2"
           />
-          <div className="absolute flex items-center h-full left-0 top-8 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
+          <div className="absolute flex items-center h-full left-0 top-4 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
             <div className=" text-white space-y-1 md:space-y-7 pl-2 md:pl-32 w-3/4">
               <h2 className="text-xl md:text-6xl font-bold">
                 Affordable Price For Yoga and Meditation Classes
@@ -69,7 +69,7 @@ const Header = () => {
             src={slide3}
             alt="Slide 3"
           />
-          <div className="absolute flex items-center h-full left-0 top-8 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
+          <div className="absolute flex items-center h-full left-0 top-4 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
             <div className=" text-white space-y-1 md:space-y-7 pl-2 md:pl-32 w-3/4">
               <h2 className="text-xl md:text-6xl font-bold">
                 Affordable Price For Yoga and Meditation Classes
@@ -94,7 +94,7 @@ const Header = () => {
             src={slide4}
             alt="Slide 4"
           />
-          <div className="absolute flex items-center h-full left-0 top-8 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
+          <div className="absolute flex items-center h-full left-0 top-4 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
             <div className=" text-white space-y-1 md:space-y-7 pl-2 md:pl-32 w-3/4">
               <h2 className="text-xl md:text-6xl font-bold">
                 Affordable Price For Yoga and Meditation Classes
@@ -119,7 +119,7 @@ const Header = () => {
             src={slide5}
             alt="Slide 5"
           />
-          <div className="absolute flex items-center h-full left-0 top-8 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
+          <div className="absolute flex items-center h-full left-0 top-4 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
             <div className=" text-white space-y-1 md:space-y-7 pl-2 md:pl-32 w-3/4">
               <h2 className="text-xl md:text-6xl font-bold">
                 Affordable Price For Yoga and Meditation Classes
@@ -144,7 +144,7 @@ const Header = () => {
             src={slide6}
             alt="Slide 6"
           />
-          <div className="absolute flex items-center h-full left-0 top-8 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
+          <div className="absolute flex items-center h-full left-0 top-4 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
             <div className=" text-white space-y-1 md:space-y-7 pl-2 md:pl-32 w-3/4">
               <h2 className="text-xl md:text-6xl font-bold">
                 Affordable Price For Yoga and Meditation Classes
@@ -169,7 +169,7 @@ const Header = () => {
             src={slide7}
             alt="Slide 7"
           />
-          <div className="absolute flex items-center h-full left-0 top-8 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
+          <div className="absolute flex items-center h-full left-0 top-4 md:top-16  bg-gradient-to-r from-[#053101] to-[rgba(21, 21, 21, 0)]">
             <div className=" text-white space-y-1 md:space-y-7 pl-2 md:pl-32 w-3/4">
               <h2 className="text-xl md:text-6xl font-bold">
                 Affordable Price For Yoga and Meditation Classes

@@ -87,7 +87,7 @@ const SignUp = () => {
     }
   };
   return (
-    <div>
+    <div className="mt-24 my-container">
       <Helmet>
         <title>MindFull Heaven | Sign Up</title>
       </Helmet>

@@ -57,14 +57,14 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="mt-24 my-container">
       <Helmet>
         <title>MindFull Heaven | Sign In</title>
       </Helmet>
       <div className=" grid grid-cols-1 md:grid-cols-2 items-center justify-center">
         <div className="mx-auto">
-          <img className="relative h-[500px]" src={loginImage} alt="" />
-          <div className="absolute top-20 left-20 md:top-52 md:left-80">
+          <img className="relative h-[700px]" src={loginImage} alt="" />
+          <div className="absolute top-48 left-20 md:top-72 md:left-80">
             <h1 className="text-center text-2xl md:text-4xl font-bold">
               Sign In
             </h1>

@@ -14,11 +14,11 @@ const Instructor = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="mt-24">
       <Helmet>
         <title>MindFull Heaven | Instructor</title>
       </Helmet>
-      <div className="grid grid-cols-3 gap-5 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ms-5 gap-5 mb-20">
         {instructor.map((teacher) => (
           <div
             key={teacher._id}
