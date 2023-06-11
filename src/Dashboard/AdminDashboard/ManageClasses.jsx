@@ -78,10 +78,12 @@ const ManageClasses = () => {
               <p>Available Seats: {singleClass.availableSeats}</p>
               <p>Price: ${singleClass.price}</p>
               <p>
-                Status:{" "}
-                <span className="badge p-3 text-white bg-[#0A5403]">
+                Status:
+                { singleClass.status === 'denied' ? <span className="badge ms-3 p-3 text-white bg-red-600">
                   {singleClass.status}
-                </span>
+                </span> : <span className="badge ms-3 p-3 text-white bg-[#0A5403]">
+                  {singleClass.status}
+                </span>}
               </p>
               <div className="card-actions mt-5 flex justify-between">
                 {singleClass.status === "approve" ? (
