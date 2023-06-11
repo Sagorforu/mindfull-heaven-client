@@ -47,6 +47,7 @@ const MyClass = () => {
               <p>Instructor Email: {singleClass.instructorEmail}</p>
               <p>Available Seats: {singleClass.availableSeats}</p>
               <p>Price: ${singleClass.price}</p>
+              {/* TODO: enrolled students come from after payment  */}
               <p>Enrolled Students: {"0"}</p>
               <p>
                 Status:
