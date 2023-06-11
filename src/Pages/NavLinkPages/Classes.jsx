@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Components/Hooks/useAuth";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Classes = () => {
   const { user } = useAuth();
@@ -17,12 +18,46 @@ const Classes = () => {
       });
   }, []);
 
-  const handleModalOpen = (id) => {
+  const handleModalOpen = (singleClass) => {
     if (!user) {
       setIsModalOpen(true);
       return;
     }
-    console.log("selected", id);
+    const selectedClassData = {
+        className: singleClass.className,
+        classPhoto: singleClass.classPhoto,
+        instructorEmail: singleClass.instructorEmail,
+        instructorName: singleClass.instructorName,
+        price: singleClass.price,
+        availableSeats: singleClass.availableSeats,
+        email: user.email
+    }
+    Swal.fire({
+        title: "Are you sure to select this class?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#0A5403",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Add it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+    fetch("http://localhost:5000/selectedClass", {
+            method: "POST",
+            headers: {
+                "content-type" : "application/json"
+            },
+            body: JSON.stringify(selectedClassData)
+          })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+              if (data.inserted > 0) {
+                Swal.fire("Class has been added successfully.", "success");
+              }
+            });
+        }
+      });
   };
 
   const handleModalClose = () => {
@@ -127,7 +162,7 @@ const Classes = () => {
                   <p>Price: ${singleClass.price}</p>
                   <div className="card-actions mt-5 flex justify-between">
                     <button
-                      onClick={() => handleModalOpen(singleClass._id)}
+                      onClick={() => handleModalOpen(singleClass)}
                       className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded"
                     >
                       Select
