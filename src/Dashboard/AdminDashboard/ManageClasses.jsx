@@ -4,15 +4,44 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useRef } from "react";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [feedbackId, setFeedbackId] = useState(null);
+  const feedbackValue = useRef(null);
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/manageClass");
     return res.data;
   });
 
+  const handleFeedback = (feedbackId) => {
+    const feedbackText = feedbackValue.current.value;
+    const feedback = {
+      feedback: feedbackText,
+    };
+    fetch(`http://localhost:5000/manageClass/feedback/${feedbackId}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(feedback),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "FeedBack added successfully!!!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch();
+        }
+      });
+  };
   const handleApprove = (singleClass) => {
     fetch(`http://localhost:5000/manageClass/approve/${singleClass._id}`, {
       method: "PATCH",
@@ -49,7 +78,8 @@ const ManageClasses = () => {
         }
       });
   };
-  const handleModalOpen = () => {
+  const handleModalOpen = (id) => {
+    setFeedbackId(id);
     setIsModalOpen(true);
   };
 
@@ -130,7 +160,7 @@ const ManageClasses = () => {
                   </button>
                 )}
                 <button
-                  onClick={handleModalOpen}
+                  onClick={() => handleModalOpen(singleClass._id)}
                   className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded"
                 >
                   FeedBack
@@ -151,11 +181,15 @@ const ManageClasses = () => {
                         placeholder="Your Feedback Here"
                         type="text"
                         name="feedback"
+                        ref={feedbackValue}
                         id=""
                       />{" "}
                       <br />
                       <div className="text-right">
-                        <button className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded mt-3">
+                        <button
+                          onClick={() => handleFeedback(feedbackId)}
+                          className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded mt-3"
+                        >
                           Send Feedback
                         </button>
                       </div>
