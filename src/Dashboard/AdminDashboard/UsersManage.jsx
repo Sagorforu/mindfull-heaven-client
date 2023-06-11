@@ -76,9 +76,9 @@ const UsersManage = () => {
         <title>MindFull Heaven | Manage Users</title>
       </Helmet>
       <PageTitle heading={"Manage Users"}></PageTitle>
-      <div className="bg-[#f4ffe9] p-20">
+      <div className="bg-[#f4ffe9] p-3 mt-4 md:p-20">
         <div className="overflow-x-auto flex justify-between w-full text-normal font-normal">
-          <table className="table w-full mx-20 mb-20">
+          <table className="table w-full overflow-x-auto mx-3 md:mx-20 mb-20">
             {/* head */}
             <thead className="text-white">
               <tr className="">

@@ -3,9 +3,11 @@ import PageTitle from "../../Components/PageTitle/PageTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/manageClass");
     return res.data;
@@ -47,6 +49,13 @@ const ManageClasses = () => {
         }
       });
   };
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="mb-20">
@@ -79,11 +88,15 @@ const ManageClasses = () => {
               <p>Price: ${singleClass.price}</p>
               <p>
                 Status:
-                { singleClass.status === 'denied' ? <span className="badge ms-3 p-3 text-white bg-red-600">
-                  {singleClass.status}
-                </span> : <span className="badge ms-3 p-3 text-white bg-[#0A5403]">
-                  {singleClass.status}
-                </span>}
+                {singleClass.status === "denied" ? (
+                  <span className="badge ms-3 p-3 text-white bg-red-600">
+                    {singleClass.status}
+                  </span>
+                ) : (
+                  <span className="badge ms-3 p-3 text-white bg-[#0A5403]">
+                    {singleClass.status}
+                  </span>
+                )}
               </p>
               <div className="card-actions mt-5 flex justify-between">
                 {singleClass.status === "approve" ? (
@@ -116,9 +129,39 @@ const ManageClasses = () => {
                     Deny
                   </button>
                 )}
-                <button className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded">
+                <button
+                  onClick={handleModalOpen}
+                  className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded"
+                >
                   FeedBack
                 </button>
+                {isModalOpen && (
+                  <div className="fixed inset-0 flex items-center justify-center z-50">
+                    <div className=" p-20 absolute inset-0"></div>
+                    <div className="bg-[#f3fff1] text-black shadow-sm  p-5 relative rounded-xl transition-transform transition-duration-[500ms]">
+                      <button
+                        className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                        onClick={handleModalClose}
+                      >
+                        ✕
+                      </button>
+                      <h3 className="text-lg font-bold mb-4">Feedback Modal</h3>
+                      <input
+                        className="w-[350px] md:w-[500px] h-[200px] md:h-[300px] px-4 pt-4 pb-60 rounded-xl shadow-md"
+                        placeholder="Your Feedback Here"
+                        type="text"
+                        name="feedback"
+                        id=""
+                      />{" "}
+                      <br />
+                      <div className="text-right">
+                        <button className="bg-[#0A5403] hover:bg-[#0e8d02] text-white font-bold py-2 px-4 rounded mt-3">
+                          Send Feedback
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

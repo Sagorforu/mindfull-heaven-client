@@ -31,14 +31,13 @@ const Dashboard = () => {
       <Helmet><title>MindFull Heaven | Dashboard</title></Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col pt-10 items-center ">
-        <Outlet></Outlet>
-        <div></div>
         <label
           htmlFor="my-drawer-2"
-          className="btn bg-[#0A5403] text-white hover:bg-[#0ea100] drawer-button lg:hidden"
+          className="btn bg-[#0A5403] text-white hover:bg-[#0ea100] drawer-button lg:hidden mb-4 md:mb-0"
         >
           Open Dashboard
         </label>
+        <Outlet></Outlet>
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
