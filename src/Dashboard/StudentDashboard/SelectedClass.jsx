@@ -4,10 +4,14 @@ import { useEffect } from "react";
 import useAuth from "../../Components/Hooks/useAuth";
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
   const { user } = useAuth();
   const [mySelectClasses, setMySelectClasses] = useState([]);
+
+  const total = mySelectClasses.reduce((sum, item) => item.price + sum, 0);
 
   useEffect(() => {
     fetch(`http://localhost:5000/selectedClass/${user.email}`)
@@ -19,7 +23,32 @@ const SelectedClass = () => {
   }, [user]);
 
   const handleDelete = (selectClass) => {
-    console.log(selectClass);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#0A5403",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/selectedClass/${selectClass._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              console.log(data);
+              const remaining = mySelectClasses.filter(
+                (ownSelectClass) => ownSelectClass._id !== selectClass._id
+              );
+              setMySelectClasses(remaining);
+              Swal.fire("Deleted!", "Your toy has been deleted.", "success");
+            }
+          });
+      }
+    });
   };
 
   return (
@@ -71,6 +100,17 @@ const SelectedClass = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="flex justify-between mx-20 items-center gap-10">
+          <h1 className="text-2xl font-bold">
+            Selected Items: {mySelectClasses.length}
+          </h1>
+          <h1 className="text-2xl font-bold">Total Price: $ {total}</h1>
+          <Link to="/dashboard/payment"><button
+            className="text-2xl text-bold hover:bg-[#19a10d] px-5 bg-[#0A5403] p-2 rounded text-white"
+          >
+            Pay Now
+          </button></Link>
         </div>
       </div>
     </div>
