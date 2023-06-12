@@ -42,6 +42,7 @@ const AddClass = () => {
       availableSeats: parseFloat(availableSeats),
       price: parseFloat(price),
       classPhoto: photoURL,
+      enrolled: parseFloat(0),
       status: "pending",
     };
     fetch("https://mindfull-heaven-server.vercel.app/addClass", {

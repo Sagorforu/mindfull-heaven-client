@@ -10,7 +10,7 @@ const PaymentHistory = () => {
   const [enrolledClass, setEnrolledClass] = useState([]);
 
   useEffect(() => {
-    fetch(`https://mindfull-heaven-server.vercel.app/enrolled/${user.email}?sort=${sort}`, {
+    fetch(`http://localhost:5000/enrolled/${user.email}?sort=${sort}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -20,9 +20,10 @@ const PaymentHistory = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setEnrolledClass(data);
+        setEnrolledClass(data)
+        // const enroll = data.map(d=> setEnrolledClass(d));
       });
-  }, [user]);
+  }, [user,sort]);
 
     return (
         <div>
@@ -38,16 +39,18 @@ const PaymentHistory = () => {
                 <th className="bg-[#0A5403]">User</th>
                 <th className="bg-[#0A5403]">Date</th>
                 <th className="bg-[#0A5403]">Price</th>
+                <th className="bg-[#0A5403]">Transaction Id</th>
               </tr>
             </thead>
             <tbody>
               {enrolledClass.map((selectClass, index) => (
-                <tr key={selectClass._id}>
+                <tr key={selectClass?._id}>
                   <td className="font-bold">{index + 1}</td>
-                  <td className="font-bold">{selectClass.className}</td>
-                  <td className="font-bold">{selectClass.payUser}</td>
-                  <td className="font-bold">{moment(selectClass.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                  <td className="font-bold">$ {selectClass.price}</td>
+                  <td className="font-bold">{selectClass?.className}</td>
+                  <td className="font-bold">{selectClass?.payUser}</td>
+                  <td className="font-bold">{moment(selectClass?.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                  <td className="font-bold">$ {selectClass?.price}</td>
+                  <td className="font-bold">ID: {selectClass?.transactionId}</td>
                 </tr>
               ))}
             </tbody>

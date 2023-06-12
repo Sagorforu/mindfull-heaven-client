@@ -75,7 +75,7 @@ const CheckOutForm = ({ classPayment }) => {
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
-        classesId: classPayment?.classesId,
+        classesId: classPayment?.classId,
         selectClassId: classPayment?._id,
         className: classPayment?.className,
         instructorName: classPayment?.instructorName,
@@ -84,8 +84,8 @@ const CheckOutForm = ({ classPayment }) => {
         instructorEmail: classPayment.instructorEmail,
         availableSeats: classPayment.availableSeats
       };
-      console.log(classPayment?.classesId, "selcted id", classPayment?._id)
-      axiosSecure.post("/payments", payment).then((res) => {
+      console.log("class id",classPayment?.classId, "selected id", classPayment?._id)
+  axiosSecure.post("/payments", payment).then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
             position: "top-center",
