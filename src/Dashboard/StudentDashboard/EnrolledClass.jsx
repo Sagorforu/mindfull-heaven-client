@@ -8,7 +8,7 @@ const EnrolledClass = () => {
   const [enrolledClass, setEnrolledClass] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/enrolled/${user.email}`, {
+    fetch(`https://mindfull-heaven-server.vercel.app/enrolled/${user.email}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

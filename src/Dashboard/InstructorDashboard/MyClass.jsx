@@ -15,7 +15,7 @@ const MyClass = () => {
   const priceValue = useRef(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myClass/${user?.email}`)
+    fetch(`https://mindfull-heaven-server.vercel.app/myClass/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -31,7 +31,7 @@ const MyClass = () => {
       seats: parseFloat(seats),
       price: parseFloat(price),
     };
-    fetch(`http://localhost:5000/manageClass/update/${updateId}`, {
+    fetch(`https://mindfull-heaven-server.vercel.app/manageClass/update/${updateId}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

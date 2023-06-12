@@ -12,7 +12,7 @@ const SelectedClass = () => {
   const [mySelectClasses, setMySelectClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/selectedClass/${user.email}`)
+    fetch(`https://mindfull-heaven-server.vercel.app/selectedClass/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMySelectClasses(data);
@@ -30,7 +30,7 @@ const SelectedClass = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selectedClass/${selectClass._id}`, {
+        fetch(`https://mindfull-heaven-server.vercel.app/selectedClass/${selectClass._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -10,7 +10,7 @@ const PaymentHistory = () => {
   const [enrolledClass, setEnrolledClass] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/enrolled/${user.email}?sort=${sort}`, {
+    fetch(`https://mindfull-heaven-server.vercel.app/enrolled/${user.email}?sort=${sort}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

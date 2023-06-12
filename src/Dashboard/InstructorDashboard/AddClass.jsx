@@ -44,7 +44,7 @@ const AddClass = () => {
       classPhoto: photoURL,
       status: "pending",
     };
-    fetch("http://localhost:5000/addClass", {
+    fetch("https://mindfull-heaven-server.vercel.app/addClass", {
       method: "POST",
       headers: {
         "content-type": "application/json",

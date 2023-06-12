@@ -84,6 +84,7 @@ const CheckOutForm = ({ classPayment }) => {
         instructorEmail: classPayment.instructorEmail,
         availableSeats: classPayment.availableSeats
       };
+      console.log(classPayment?.classesId, "selcted id", classPayment?._id)
       axiosSecure.post("/payments", payment).then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

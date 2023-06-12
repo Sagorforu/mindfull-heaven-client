@@ -11,7 +11,7 @@ const Classes = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/approveClasses")
+    fetch("https://mindfull-heaven-server.vercel.app/approveClasses")
       .then((res) => res.json())
       .then((data) => {
         setApprovedClasses(data);
@@ -42,7 +42,7 @@ const Classes = () => {
       confirmButtonText: "Yes, Add it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("http://localhost:5000/selectedClass", {
+        fetch("https://mindfull-heaven-server.vercel.app/selectedClass", {
           method: "POST",
           headers: {
             "content-type": "application/json",

@@ -21,7 +21,7 @@ const ManageClasses = () => {
     const feedback = {
       feedback: feedbackText,
     };
-    fetch(`http://localhost:5000/manageClass/feedback/${feedbackId}`, {
+    fetch(`https://mindfull-heaven-server.vercel.app/manageClass/feedback/${feedbackId}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -43,7 +43,7 @@ const ManageClasses = () => {
       });
   };
   const handleApprove = (singleClass) => {
-    fetch(`http://localhost:5000/manageClass/approve/${singleClass._id}`, {
+    fetch(`https://mindfull-heaven-server.vercel.app/manageClass/approve/${singleClass._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -61,7 +61,7 @@ const ManageClasses = () => {
       });
   };
   const handleDeny = (singleClass) => {
-    fetch(`http://localhost:5000/manageClass/denied/${singleClass._id}`, {
+    fetch(`https://mindfull-heaven-server.vercel.app/manageClass/denied/${singleClass._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())

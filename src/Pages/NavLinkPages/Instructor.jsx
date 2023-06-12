@@ -6,7 +6,7 @@ const Instructor = () => {
   const [instructor, setInstructor] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users/instructor")
+    fetch("https://mindfull-heaven-server.vercel.app/users/instructor")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

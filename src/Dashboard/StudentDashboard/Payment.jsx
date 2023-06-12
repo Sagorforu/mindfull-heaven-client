@@ -16,13 +16,14 @@ const Payment = () => {
   const [mySelectClasses, setMySelectClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/selectedClass/${user.email}`)
+    fetch(`https://mindfull-heaven-server.vercel.app/selectedClass/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMySelectClasses(data);
       });
   }, [user]);
   const classPayment = mySelectClasses.find((c) => c._id==id);
+  console.log(classPayment)
 
   return (
     <div>
