@@ -17,6 +17,7 @@ import Profile from "../Pages/Profile/Profile";
 import About from "../Pages/About/About";
 import UsersManage from "../Dashboard/AdminDashboard/UsersManage";
 import Payment from "../Dashboard/StudentDashboard/Payment";
+import PaymentHistory from "../Dashboard/StudentDashboard/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/payment/:id",
                 element: <Payment></Payment>
+            },
+            {
+                path: "/dashboard/paymentHistory",
+                element: <PaymentHistory></PaymentHistory>
             }
         ]
     }

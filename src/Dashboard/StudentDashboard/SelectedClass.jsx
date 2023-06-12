@@ -47,15 +47,6 @@ const SelectedClass = () => {
       }
     });
   };
-  const handlePaymentId = (id) => {
-    console.lo
-    fetch(`http://localhost:5000/selectedClass/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
-
   return (
     <div>
       <Helmet>
@@ -96,7 +87,6 @@ const SelectedClass = () => {
                   <td className="font-bold">$ {selectClass.price}</td>
                   <td>
                     <Link
-                      onClick={() => handlePaymentId(selectClass._id)}
                       to={`/dashboard/payment/${selectClass._id}`}
                     >
                       <button className="text-2xl text-bold hover:bg-[#19a10d] px-5 bg-[#0A5403] p-2 rounded text-white">

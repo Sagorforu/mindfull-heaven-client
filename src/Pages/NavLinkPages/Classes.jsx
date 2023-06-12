@@ -24,6 +24,7 @@ const Classes = () => {
       return;
     }
     const selectedClassData = {
+      classId: singleClass._id,
       className: singleClass.className,
       classPhoto: singleClass.classPhoto,
       instructorEmail: singleClass.instructorEmail,

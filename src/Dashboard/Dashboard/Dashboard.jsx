@@ -3,7 +3,7 @@ import useAuth from "../../Components/Hooks/useAuth";
 import useAdmin from "../../Components/Hooks/useAdmin";
 import useInstructor from "../../Components/Hooks/useInstructor";
 import useStudent from "../../Components/Hooks/useStudent";
-import { FaBookOpen, FaCheckSquare, FaHome, FaSignInAlt, FaUser, FaUsers } from "react-icons/fa";
+import { FaBookOpen, FaCheckSquare, FaHome, FaSignInAlt, FaUser, FaUsers, FaWallet } from "react-icons/fa";
 import { ImBook, ImProfile } from "react-icons/im";
 import { toast } from "react-toastify";
 import { MdLibraryBooks } from "react-icons/md";
@@ -85,6 +85,11 @@ const Dashboard = () => {
                 <Link to="/dashboard/enrolledClass">
                   <li className="hover:bg-white hover:text-slate-800 text-white border-b-2 hover:font-bold px-4 py-1 rounded mt-3 flex items-center gap-5">
                   <FaBookOpen></FaBookOpen> My Enrolled Classes
+                  </li>
+                </Link>
+                <Link to="/dashboard/paymentHistory">
+                  <li className="hover:bg-white hover:text-slate-800 text-white border-b-2 hover:font-bold px-4 py-1 rounded mt-3 flex items-center gap-5">
+                  <FaWallet></FaWallet> My Payment History
                   </li>
                 </Link>
               </>

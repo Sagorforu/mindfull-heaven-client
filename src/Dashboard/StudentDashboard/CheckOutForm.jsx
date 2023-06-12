@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { ImSpinner } from "react-icons/im";
 
 const CheckOutForm = ({ classPayment }) => {
   const { user } = useAuth();
@@ -74,9 +75,9 @@ const CheckOutForm = ({ classPayment }) => {
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
-        classesId: classPayment?._id,
+        classesId: classPayment?.classesId,
+        selectClassId: classPayment?._id,
         className: classPayment?.className,
-        status: "servicePending",
         instructorName: classPayment?.instructorName,
         classPhoto: classPayment.classPhoto,
         payUser: classPayment.email,
@@ -89,17 +90,6 @@ const CheckOutForm = ({ classPayment }) => {
             position: "top-center",
             icon: "success",
             title: "Payment Successful!!!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
-      axiosSecure.delete("/payments", payment).then((res) => {
-        if (res.data.deletedCount) {
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Selected Classes empty now!!!",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -140,7 +130,11 @@ const CheckOutForm = ({ classPayment }) => {
           type="submit"
           disabled={!stripe || !clientSecret || processing}
         >
-          Pay
+          {processing ? (
+                    <ImSpinner size={24} className="animate-spin"></ImSpinner>
+                  ) : (
+                    `Pay $${price}`
+                  )}
         </button>
         <ToastContainer></ToastContainer>
       </form>
