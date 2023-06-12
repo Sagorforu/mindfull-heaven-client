@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
-import useAuth from "../../../Components/Hooks/useAuth";
 
 const PopularClasses = () => {
   const [sort, setSort] = useState("dec");
   const [popularClasses, setPopularClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/popularClass?sort=${sort}`, {
+    fetch(`https://mindfull-heaven-server.vercel.app/popularClass?sort=${sort}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
