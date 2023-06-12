@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
-const CheckOutForm = ({ mySelectClasses, price }) => {
+const CheckOutForm = ({ classPayment }) => {
   const { user } = useAuth();
   const stripe = useStripe();
   const elements = useElements();
@@ -15,6 +15,9 @@ const CheckOutForm = ({ mySelectClasses, price }) => {
   const [cardError, setCardError] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
+  console.log(classPayment);
+  // const price = classPayment.price;
+  const price = classPayment?.price;
 
   useEffect(() => {
     if (price > 0) {
@@ -71,11 +74,14 @@ const CheckOutForm = ({ mySelectClasses, price }) => {
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
-        quantity: mySelectClasses.length,
-        classesId: mySelectClasses.map((item) => item._id),
-        className: mySelectClasses.map((item) => item.className),
+        classesId: classPayment?._id,
+        className: classPayment?.className,
         status: "servicePending",
-        instructorName: mySelectClasses.map((item) => item.instructorName),
+        instructorName: classPayment?.instructorName,
+        classPhoto: classPayment.classPhoto,
+        payUser: classPayment.email,
+        instructorEmail: classPayment.instructorEmail,
+        availableSeats: classPayment.availableSeats
       };
       axiosSecure.post("/payments", payment).then((res) => {
         if (res.data.insertedId) {

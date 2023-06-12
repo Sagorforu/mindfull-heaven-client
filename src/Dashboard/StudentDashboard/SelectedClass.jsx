@@ -11,13 +11,10 @@ const SelectedClass = () => {
   const { user } = useAuth();
   const [mySelectClasses, setMySelectClasses] = useState([]);
 
-  const total = mySelectClasses.reduce((sum, item) => item.price + sum, 0);
-
   useEffect(() => {
     fetch(`http://localhost:5000/selectedClass/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setMySelectClasses(data);
       });
   }, [user]);
@@ -50,6 +47,14 @@ const SelectedClass = () => {
       }
     });
   };
+  const handlePaymentId = (id) => {
+    console.lo
+    fetch(`http://localhost:5000/selectedClass/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <div>
@@ -68,6 +73,7 @@ const SelectedClass = () => {
                 <th className="bg-[#0A5403]">class Name</th>
                 <th className="bg-[#0A5403]">Instructor Name</th>
                 <th className="bg-[#0A5403]">Price</th>
+                <th className="bg-[#0A5403]">Pay</th>
                 <th className="bg-[#0A5403]">Delete</th>
               </tr>
             </thead>
@@ -89,6 +95,16 @@ const SelectedClass = () => {
                   <td className="font-bold">{selectClass.instructorName}</td>
                   <td className="font-bold">$ {selectClass.price}</td>
                   <td>
+                    <Link
+                      onClick={() => handlePaymentId(selectClass._id)}
+                      to={`/dashboard/payment/${selectClass._id}`}
+                    >
+                      <button className="text-2xl text-bold hover:bg-[#19a10d] px-5 bg-[#0A5403] p-2 rounded text-white">
+                        Pay Now
+                      </button>
+                    </Link>
+                  </td>
+                  <td>
                     <button
                       onClick={() => handleDelete(selectClass)}
                       className="text-xl hover:bg-[#a31111] bg-[#d61e1e] p-3 rounded text-white"
@@ -100,17 +116,6 @@ const SelectedClass = () => {
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="flex justify-between mx-20 items-center gap-10">
-          <h1 className="text-2xl font-bold">
-            Selected Items: {mySelectClasses.length}
-          </h1>
-          <h1 className="text-2xl font-bold">Total Price: $ {total}</h1>
-          <Link to="/dashboard/payment"><button
-            className="text-2xl text-bold hover:bg-[#19a10d] px-5 bg-[#0A5403] p-2 rounded text-white"
-          >
-            Pay Now
-          </button></Link>
         </div>
       </div>
     </div>

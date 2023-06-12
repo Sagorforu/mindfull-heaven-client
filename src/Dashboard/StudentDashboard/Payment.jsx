@@ -6,15 +6,14 @@ import CheckOutForm from "./CheckOutForm";
 import { useEffect, useState } from "react";
 import useAuth from "../../Components/Hooks/useAuth";
 import './CheckOut.css'
+import { useParams } from "react-router-dom";
 
 // Todo publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_publish_key);
 const Payment = () => {
+  const { id } = useParams();
   const { user } = useAuth();
   const [mySelectClasses, setMySelectClasses] = useState([]);
-
-  const total = mySelectClasses.reduce((sum, item) => item.price + sum, 0);
-  const totalPrice = parseFloat(total.toFixed(2));
 
   useEffect(() => {
     fetch(`http://localhost:5000/selectedClass/${user.email}`)
@@ -23,6 +22,7 @@ const Payment = () => {
         setMySelectClasses(data);
       });
   }, [user]);
+  const classPayment = mySelectClasses.find((c) => c._id==id);
 
   return (
     <div>
@@ -33,7 +33,7 @@ const Payment = () => {
       <PageTitle heading={"Make Your Payment"}></PageTitle>
       <div>
         <Elements stripe={stripePromise}>
-          <CheckOutForm mySelectClasses={mySelectClasses} price={totalPrice}></CheckOutForm>
+          <CheckOutForm classPayment={classPayment}></CheckOutForm>
         </Elements>
       </div>
     </div>
