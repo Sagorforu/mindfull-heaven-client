@@ -66,7 +66,7 @@ const MyClass = () => {
         <title>MindFull Heaven | My Class</title>
       </Helmet>
       <PageTitle heading={"My Class"}></PageTitle>
-      <div className="grid grid-cols-3 gap-5 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
         {classes.map((singleClass) => (
           <div
             key={singleClass._id}
