@@ -23,15 +23,15 @@ const PopularClasses = () => {
   return (
     <div className="mt-24 my-container">
       <PageTitle heading={"Our popular classes"}></PageTitle>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ms-5 gap-5 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
         {popularClasses.map((popular) => (
           <div
             key={popular?._id}
-            className="card w-96 bg-base-100 shadow-xl group"
+            className="card w-full mx-auto bg-base-100 shadow-xl group"
           >
             <figure className="px-10 pt-10">
               <img
-                className="transform transition-transform duration-200 group-hover:scale-110"
+                className="transform transition-transform duration-200 md:h-96 h-full group-hover:scale-110"
                 src={popular?.classPhoto
                 }
                 alt="yoga class"
