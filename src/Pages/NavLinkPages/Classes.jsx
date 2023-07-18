@@ -73,10 +73,10 @@ const Classes = () => {
           <div key={singleClass._id}>
             {singleClass.availableSeats === 0 ? (
               <div>
-                <div className="card w-96 bg-red-500 text-white shadow-xl group">
+                <div className="card w-full bg-red-500 text-white shadow-xl group">
                   <figure className="px-10 pt-10">
                     <img
-                      className="transform transition-transform duration-200 group-hover:scale-110"
+                      className="transform transition-transform duration-200  md:h-96 h-full group-hover:scale-110"
                       src={singleClass.classPhoto}
                       alt="yoga class"
                     />
@@ -146,10 +146,10 @@ const Classes = () => {
                 </div>
               </div>
             ) : (
-              <div className="card w-96 bg-base-100 shadow-xl group">
+              <div className="card w-full bg-base-100 shadow-xl group">
                 <figure className="px-10 pt-10">
                   <img
-                    className="transform transition-transform duration-200 group-hover:scale-110"
+                    className="transform transition-transform duration-200 md:h-96 h-full group-hover:scale-110"
                     src={singleClass.classPhoto}
                     alt="yoga class"
                   />
