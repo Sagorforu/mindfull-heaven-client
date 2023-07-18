@@ -1,7 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { useEffect, useState } from "react";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
@@ -26,7 +23,7 @@ const StudentReviews = () => {
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper"
+        className="w-full"
       >
         {studentReviews.map((studentReview) => (
           <SwiperSlide key={studentReview.id}>
@@ -39,7 +36,7 @@ const StudentReviews = () => {
               <h2 className="text-2xl font-bold text-slate-700 my-5">
                 {studentReview.name}
               </h2>
-              <h4 className="text-lg font-semibold text-slate-700 px-20">
+              <h4 className="text-lg font-semibold text-slate-700 lg:px-20">
                 {studentReview.review}
               </h4>
             </div>

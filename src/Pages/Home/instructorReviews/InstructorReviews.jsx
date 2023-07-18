@@ -5,6 +5,7 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { useEffect, useState } from "react";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
+import "./instructorReview.css"
 
 const InstructorReviews = () => {
   const [instructorReviews, setInstructorReview] = useState([]);
@@ -17,7 +18,7 @@ const InstructorReviews = () => {
 
   return (
     <div>
-      <div className="my-10">
+      <div className="my-10 mx-1">
         <PageTitle heading={"What Our Instructors Say..."}></PageTitle>
       </div>
       <Swiper
@@ -39,7 +40,7 @@ const InstructorReviews = () => {
               <h2 className="text-2xl font-bold text-slate-700 my-5">
                 {instructorReview.name}
               </h2>
-              <h4 className="text-lg font-semibold text-slate-700 px-20">
+              <h4 className="text-lg font-semibold text-slate-700 lg:px-20">
                 {instructorReview.review}
               </h4>
             </div>
