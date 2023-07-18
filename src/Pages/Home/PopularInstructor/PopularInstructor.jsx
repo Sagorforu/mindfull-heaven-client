@@ -8,7 +8,6 @@ const PopularInstructor = () => {
     fetch("https://mindfull-heaven-server.vercel.app/users/popularInstructor")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInstructor(data);
       });
   }, []);

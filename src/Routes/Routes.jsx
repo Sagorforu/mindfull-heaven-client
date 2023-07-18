@@ -18,6 +18,7 @@ import About from "../Pages/About/About";
 import UsersManage from "../Dashboard/AdminDashboard/UsersManage";
 import Payment from "../Dashboard/StudentDashboard/Payment";
 import PaymentHistory from "../Dashboard/StudentDashboard/PaymentHistory";
+import SingleBlog from "../Pages/Home/Blogs/SingleBlog";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
         {
             path: '/about',
             element: <About></About>
+        },
+        {
+            path: '/singleBlog/:id',
+            element: <SingleBlog></SingleBlog>,
+            loader: () => fetch(`/blog.json`)
         }
       ]
     },
