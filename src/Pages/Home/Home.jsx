@@ -5,6 +5,8 @@ import PopularInstructor from "./PopularInstructor/PopularInstructor";
 import Questions from "./Questions/Questions";
 import SendNote from "./SendNote/SendNote";
 import Support from "./Support/Support";
+import InstructorReviews from "./instructorReviews/InstructorReviews";
+import StudentReviews from "./studentReviews/StudentReviews";
 
 const Home = () => {
     return (
@@ -16,6 +18,8 @@ const Home = () => {
             <Blogs></Blogs>
             <Support></Support>
             <SendNote></SendNote>
+            <StudentReviews></StudentReviews>
+            <InstructorReviews></InstructorReviews>
         </div>
     );
 };

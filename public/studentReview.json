@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "John Smith",
+    "review": "The yoga class was amazing! I felt so relaxed and centered after the session. The instructor was excellent, and I learned new poses that I can now practice at home.",
+    "profilePic": "https://i.ibb.co/g67yrXg/john-smith.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Emily Johnson",
+    "review": "I absolutely loved the yoga class! The atmosphere was calming, and the instructor was very attentive to each student's needs. I'll definitely be coming back for more classes.",
+    "profilePic": "https://i.ibb.co/27rc4mY/emily.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Michael Brown",
+    "review": "The yoga class exceeded my expectations. I've been practicing yoga for a while, and this class challenged me in a positive way. The instructor's guidance was fantastic, and I left feeling energized and refreshed.",
+    "profilePic": "https://i.ibb.co/9cN1692/micheal.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Sophia Lee",
+    "review": "The yoga class was the perfect way to de-stress. The instructor created a welcoming environment, and I felt comfortable trying new poses. It was a wonderful experience, and I highly recommend it to others.",
+    "profilePic": "https://i.ibb.co/tQqtK6H/sophia.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Daniel Martinez",
+    "review": "Attending the yoga class was a great decision. The instructor's instructions were clear and helpful, especially for someone like me who is relatively new to yoga. I felt more flexible and focused by the end of the class.",
+    "profilePic": "https://i.ibb.co/Wkz3NgC/daniel.jpg"
+  }
+]

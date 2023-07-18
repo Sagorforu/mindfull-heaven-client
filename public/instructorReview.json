@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "review": "This class management website is a game-changer! It has streamlined all my tasks, from scheduling classes to managing student registrations. I can easily track attendance, and the payment system works flawlessly.",
+    "profilePic": "https://i.ibb.co/zrgPbGx/alice.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Robert Smith",
+    "review": "As an instructor, this website has made my life so much easier. I can focus on teaching and creating meaningful content for my students. The platform's user interface is intuitive, and the analytics provide valuable insights into my class performance.",
+    "profilePic": "https://i.ibb.co/7k2CnKM/robert.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Emma Davis",
+    "review": "I've tried various class management platforms, but this one stands out. The website's design is visually appealing and aligns perfectly with the tranquil theme of my classes. It has reduced my administrative workload significantly.",
+    "profilePic": "https://i.ibb.co/VY3Zwsy/emma.jpg"
+  },
+  {
+    "id": 4,
+    "name": "William Brown",
+    "review": "Managing our meditation center's classes has never been smoother. The website's features for handling recurring events and managing multiple instructors are superb. It has saved us time and helped us grow our community.",
+    "profilePic": "https://i.ibb.co/n8VGqNc/william.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Sophie Martinez",
+    "review": "I highly recommend this class management website to all yoga and meditation instructors. It's reliable, secure, and provides excellent customer support. My students find it easy to navigate and book classes.",
+    "profilePic": "https://i.ibb.co/qxJmnFv/shopie.jpg"
+  }
+]
